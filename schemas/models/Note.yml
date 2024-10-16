@@ -1,0 +1,22 @@
+type: object
+properties:
+  date:
+    type: string
+    format: date-time
+  id:
+    type: string
+  price:
+    type: number
+  notes:
+    type: string
+  priceTarget:
+    type: number
+  followUpDate:
+    type: string
+    format: date-time
+  confidence:
+    type: integer
+required:
+  - date
+  - price
+  - notes

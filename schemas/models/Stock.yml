@@ -1,0 +1,12 @@
+type: object
+properties:
+  name:
+    type: string
+    example: Apple
+  symbol:
+    type: string
+    example: AAPL
+  notes:
+    type: array
+    items:
+      $ref: './Note.yml'

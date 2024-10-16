@@ -1,0 +1,15 @@
+openapi: 3.0.0
+security: []
+info:
+  title: Fundamental Stocks API
+  description: Add, remove, add notes to watched stocks
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /stocks:
+    $ref: ./paths/stocks.yml
+  /stocks/{symbol}:
+    $ref: ./paths/add-note.yml
+  /stocks/{symbol}/{noteId}:
+    $ref: ./paths/delete-note.yml
