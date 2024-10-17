@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
 function App() {
+  console.log('app rendered');
+
   const [count, setCount] = useState(0);
 
   return (
