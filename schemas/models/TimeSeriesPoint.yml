@@ -1,0 +1,33 @@
+type: object
+properties:
+  datetime:
+    type: string
+    format: date-time
+    example: '2021-09-16 15:55:00'
+  open:
+    type: string
+    minimum: 220
+    maximum: 180
+  high:
+    type: string
+    minimum: 220
+    maximum: 180
+  low:
+    type: string
+    minimum: 220
+    maximum: 180
+  close:
+    type: string
+    minimum: 220
+    maximum: 180
+  volume:
+    type: string
+    minimum: 10000
+    maximum: 100000
+required:
+  - datetime
+  - open
+  - high
+  - low
+  - close
+  - volume

@@ -1,0 +1,22 @@
+properties:
+  symbol:
+    type: string
+    example: 'AAPL'
+  name:
+    type: string
+    example: 'Apple Inc'
+  currency:
+    type: string
+    example: 'USD'
+  exchange:
+    type: string
+    example: 'NASDAQ'
+  mic_code:
+    type: string
+    example: 'XNAS'
+  exchange_timezone:
+    type: string
+    example: 'America/New_York'
+  period:
+    type: string
+    example: 'Quarterly'

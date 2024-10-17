@@ -1,0 +1,19 @@
+get:
+  summary: Get stock quote
+  operationId: getStockQuote
+  parameters:
+    - name: symbol
+      in: query
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/Quote.yml
+
+    '400':
+      $ref: ../responses/ProblemResponse.yml

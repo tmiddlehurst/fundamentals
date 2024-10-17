@@ -1,0 +1,62 @@
+# This is only available on the PRO version
+type: object
+properties:
+  fiscal_date:
+    type: string
+    format: date
+  quarter:
+    type: integer
+  year:
+    type: integer
+  sales:
+    type: integer
+  cost_of_goods:
+    type: integer
+  gross_profit:
+    type: integer
+  operating_expense:
+    type: object
+    properties:
+      research_and_development:
+        type: integer
+      selling_general_and_administrative:
+        type: integer
+      other_operating_expenses:
+        type: integer
+        nullable: true
+  operating_income:
+    type: integer
+  non_operating_interest:
+    type: object
+    properties:
+      income:
+        type: integer
+      expense:
+        type: integer
+  other_income_expense:
+    type: integer
+  pretax_income:
+    type: integer
+  income_tax:
+    type: integer
+  net_income:
+    type: integer
+  eps_basic:
+    type: number
+  eps_diluted:
+    type: number
+  basic_shares_outstanding:
+    type: integer
+  diluted_shares_outstanding:
+    type: integer
+  ebitda:
+    type: integer
+  net_income_continuous_operations:
+    type: integer
+    nullable: true
+  minority_interests:
+    type: integer
+    nullable: true
+  preferred_stock_dividends:
+    type: integer
+    nullable: true

@@ -1,0 +1,74 @@
+type: object
+properties:
+  symbol:
+    type: string
+    example: 'AAPL'
+  name:
+    type: string
+    example: 'Apple Inc'
+  exchange:
+    type: string
+    example: 'NASDAQ'
+  mic_code:
+    type: string
+    example: 'XNAS'
+  currency:
+    type: string
+    example: 'USD'
+  datetime:
+    type: string
+    format: date
+    example: '2021-09-16'
+  timestamp:
+    type: number
+  open:
+    type: string
+  high:
+    type: string
+  low:
+    type: string
+  close:
+    type: string
+  volume:
+    type: string
+  previous_close:
+    type: string
+  change:
+    type: string
+  percent_change:
+    type: string
+  average_volume:
+    type: string
+  rolling_1d_change:
+    type: string
+  rolling_7d_change:
+    type: string
+  rolling_period_change:
+    type: string
+  is_market_open:
+    type: boolean
+  fifty_two_week:
+    type: object
+    properties:
+      low:
+        type: string
+      high:
+        type: string
+      low_change:
+        type: string
+      high_change:
+        type: string
+      low_change_percent:
+        type: string
+      high_change_percent:
+        type: string
+      range:
+        type: string
+  extended_change:
+    type: string
+  extended_percent_change:
+    type: string
+  extended_price:
+    type: string
+  extended_timestamp:
+    type: number

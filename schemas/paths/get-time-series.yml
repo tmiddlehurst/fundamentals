@@ -1,0 +1,140 @@
+get:
+  operationId: getTimeSeriesData
+  summary: Retrieve time series data for a financial instrument
+  parameters:
+    - name: symbol
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Symbol ticker of the instrument (e.g., AAPL, EUR/USD, ETH/BTC)
+    - name: figi
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter by financial instrument global identifier (FIGI)
+    - name: interval
+      in: query
+      required: true
+      schema:
+        type: string
+        enum: [1min, 5min, 15min, 30min, 45min, 1h, 2h, 4h, 1day, 1week, 1month]
+      description: Interval between two consecutive points in time series
+    - name: exchange
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Exchange where instrument is traded
+    - name: mic_code
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Market Identifier Code (MIC) under ISO 10383 standard
+    - name: country
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Country where instrument is traded
+    - name: type
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          [
+            American Depositary Receipt,
+            Bond,
+            Bond Fund,
+            Closed-end Fund,
+            Common Stock,
+            Depositary Receipt,
+            Digital Currency,
+            ETF,
+            Exchange-Traded Note,
+            Global Depositary Receipt,
+            Index,
+            Limited Partnership,
+            Mutual Fund,
+            Physical Currency,
+            Preferred Stock,
+            REIT,
+            Right,
+            Structured Product,
+            Trust,
+            Unit,
+            Warrant,
+          ]
+      description: The asset class to which the instrument belongs
+    - name: outputsize
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 5000
+      description: Number of data points to retrieve (default 30 when no date parameters are set, otherwise set to maximum)
+    - name: format
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [JSON, CSV]
+      description: Format of the response (default JSON)
+    - name: delimiter
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Specify the delimiter used when downloading the CSV file (default semicolon ;)
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  symbol:
+                    type: string
+                    example: 'AAPL'
+                  interval:
+                    type: string
+                    example: '1min'
+                  currency:
+                    type: string
+                    example: 'USD'
+                  exchange_timezone:
+                    type: string
+                    example: 'America/New_York'
+                  exchange:
+                    type: string
+                    example: 'NASDAQ'
+                  mic_code:
+                    type: string
+                    example: 'XNAS'
+                  type:
+                    type: string
+                    example: 'Common Stock'
+              values:
+                type: array
+                items:
+                  $ref: '../models/TimeSeriesPoint.yml'
+                minItems: 20
+                maxItems: 500
+              status:
+                type: string
+                example: 'ok'
+
+    '400':
+      description: Bad request
+    '404':
+      description: Not found
+    '500':
+      description: Internal server error
