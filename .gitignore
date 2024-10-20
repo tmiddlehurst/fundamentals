@@ -16,7 +16,7 @@ dist-ssr
 
 # openapi generated
 src/types/generated
-mock
+src/mock/generated
 openapitools.json
 
 
