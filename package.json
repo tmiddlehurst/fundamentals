@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run openapi-generate && tsc -b && vite build",
+    "generate-mocks": "../msw-auto-mock/bin/cli.js './schemas/api.yml' -o ./mock --base-url",
+    "generate-types": "npx @openapitools/openapi-generator-cli generate -g typescript-axios -i ./schemas/api.yml -o src/types/generated",
     "lint": "eslint .",
+    "openapi-generate": "npm run generate-types && npm run generate-mocks",
     "preview": "vite preview"
   },
   "dependencies": {
