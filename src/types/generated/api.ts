@@ -45,6 +45,276 @@ export interface AddStockRequest {
 /**
  * 
  * @export
+ * @interface GetIncomeStatement200Response
+ */
+export interface GetIncomeStatement200Response {
+    /**
+     * 
+     * @type {StockMetadata}
+     * @memberof GetIncomeStatement200Response
+     */
+    'meta'?: StockMetadata;
+    /**
+     * 
+     * @type {Array<IncomeStatement>}
+     * @memberof GetIncomeStatement200Response
+     */
+    'income_statement'?: Array<IncomeStatement>;
+}
+/**
+ * 
+ * @export
+ * @interface GetTimeSeriesData200Response
+ */
+export interface GetTimeSeriesData200Response {
+    /**
+     * 
+     * @type {GetTimeSeriesData200ResponseMeta}
+     * @memberof GetTimeSeriesData200Response
+     */
+    'meta'?: GetTimeSeriesData200ResponseMeta;
+    /**
+     * 
+     * @type {Array<TimeSeriesPoint>}
+     * @memberof GetTimeSeriesData200Response
+     */
+    'values'?: Array<TimeSeriesPoint>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTimeSeriesData200Response
+     */
+    'status'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface GetTimeSeriesData200ResponseMeta
+ */
+export interface GetTimeSeriesData200ResponseMeta {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTimeSeriesData200ResponseMeta
+     */
+    'symbol'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTimeSeriesData200ResponseMeta
+     */
+    'interval'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTimeSeriesData200ResponseMeta
+     */
+    'currency'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTimeSeriesData200ResponseMeta
+     */
+    'exchange_timezone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTimeSeriesData200ResponseMeta
+     */
+    'exchange'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTimeSeriesData200ResponseMeta
+     */
+    'mic_code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetTimeSeriesData200ResponseMeta
+     */
+    'type'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface IncomeStatement
+ */
+export interface IncomeStatement {
+    /**
+     * 
+     * @type {string}
+     * @memberof IncomeStatement
+     */
+    'fiscal_date'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'quarter'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'year'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'sales'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'cost_of_goods'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'gross_profit'?: number;
+    /**
+     * 
+     * @type {IncomeStatementOperatingExpense}
+     * @memberof IncomeStatement
+     */
+    'operating_expense'?: IncomeStatementOperatingExpense;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'operating_income'?: number;
+    /**
+     * 
+     * @type {IncomeStatementNonOperatingInterest}
+     * @memberof IncomeStatement
+     */
+    'non_operating_interest'?: IncomeStatementNonOperatingInterest;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'other_income_expense'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'pretax_income'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'income_tax'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'net_income'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'eps_basic'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'eps_diluted'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'basic_shares_outstanding'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'diluted_shares_outstanding'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'ebitda'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'net_income_continuous_operations'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'minority_interests'?: number | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatement
+     */
+    'preferred_stock_dividends'?: number | null;
+}
+/**
+ * 
+ * @export
+ * @interface IncomeStatementNonOperatingInterest
+ */
+export interface IncomeStatementNonOperatingInterest {
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatementNonOperatingInterest
+     */
+    'income'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatementNonOperatingInterest
+     */
+    'expense'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface IncomeStatementOperatingExpense
+ */
+export interface IncomeStatementOperatingExpense {
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatementOperatingExpense
+     */
+    'research_and_development'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatementOperatingExpense
+     */
+    'selling_general_and_administrative'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IncomeStatementOperatingExpense
+     */
+    'other_operating_expenses'?: number | null;
+}
+/**
+ * 
+ * @export
  * @interface Note
  */
 export interface Note {
@@ -137,6 +407,212 @@ export interface Problem {
 /**
  * 
  * @export
+ * @interface Quote
+ */
+export interface Quote {
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'symbol'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'exchange'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'mic_code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'currency'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'datetime'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Quote
+     */
+    'timestamp'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'open'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'high'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'low'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'close'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'volume'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'previous_close'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'change'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'percent_change'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'average_volume'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'rolling_1d_change'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'rolling_7d_change'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'rolling_period_change'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Quote
+     */
+    'is_market_open'?: boolean;
+    /**
+     * 
+     * @type {QuoteFiftyTwoWeek}
+     * @memberof Quote
+     */
+    'fifty_two_week'?: QuoteFiftyTwoWeek;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'extended_change'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'extended_percent_change'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Quote
+     */
+    'extended_price'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Quote
+     */
+    'extended_timestamp'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface QuoteFiftyTwoWeek
+ */
+export interface QuoteFiftyTwoWeek {
+    /**
+     * 
+     * @type {string}
+     * @memberof QuoteFiftyTwoWeek
+     */
+    'low'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QuoteFiftyTwoWeek
+     */
+    'high'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QuoteFiftyTwoWeek
+     */
+    'low_change'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QuoteFiftyTwoWeek
+     */
+    'high_change'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QuoteFiftyTwoWeek
+     */
+    'low_change_percent'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QuoteFiftyTwoWeek
+     */
+    'high_change_percent'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof QuoteFiftyTwoWeek
+     */
+    'range'?: string;
+}
+/**
+ * 
+ * @export
  * @interface Stock
  */
 export interface Stock {
@@ -158,6 +634,98 @@ export interface Stock {
      * @memberof Stock
      */
     'notes'?: Array<Note>;
+}
+/**
+ * 
+ * @export
+ * @interface StockMetadata
+ */
+export interface StockMetadata {
+    /**
+     * 
+     * @type {string}
+     * @memberof StockMetadata
+     */
+    'symbol'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StockMetadata
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StockMetadata
+     */
+    'currency'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StockMetadata
+     */
+    'exchange'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StockMetadata
+     */
+    'mic_code'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StockMetadata
+     */
+    'exchange_timezone'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof StockMetadata
+     */
+    'period'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface TimeSeriesPoint
+ */
+export interface TimeSeriesPoint {
+    /**
+     * 
+     * @type {string}
+     * @memberof TimeSeriesPoint
+     */
+    'datetime': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TimeSeriesPoint
+     */
+    'open': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TimeSeriesPoint
+     */
+    'high': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TimeSeriesPoint
+     */
+    'low': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TimeSeriesPoint
+     */
+    'close': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TimeSeriesPoint
+     */
+    'volume': string;
 }
 
 /**
@@ -268,6 +836,217 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve the income statement for a given financial instrument.
+         * @summary Get Income Statement
+         * @param {string} symbol 
+         * @param {string} [figi] 
+         * @param {string} [exchange] 
+         * @param {string} [micCode] 
+         * @param {string} [country] 
+         * @param {GetIncomeStatementPeriodEnum} [period] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIncomeStatement: async (symbol: string, figi?: string, exchange?: string, micCode?: string, country?: string, period?: GetIncomeStatementPeriodEnum, startDate?: string, endDate?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'symbol' is not null or undefined
+            assertParamExists('getIncomeStatement', 'symbol', symbol)
+            const localVarPath = `/market-data/income-statement`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (symbol !== undefined) {
+                localVarQueryParameter['symbol'] = symbol;
+            }
+
+            if (figi !== undefined) {
+                localVarQueryParameter['figi'] = figi;
+            }
+
+            if (exchange !== undefined) {
+                localVarQueryParameter['exchange'] = exchange;
+            }
+
+            if (micCode !== undefined) {
+                localVarQueryParameter['mic_code'] = micCode;
+            }
+
+            if (country !== undefined) {
+                localVarQueryParameter['country'] = country;
+            }
+
+            if (period !== undefined) {
+                localVarQueryParameter['period'] = period;
+            }
+
+            if (startDate !== undefined) {
+                localVarQueryParameter['start_date'] = (startDate as any instanceof Date) ?
+                    (startDate as any).toISOString().substring(0,10) :
+                    startDate;
+            }
+
+            if (endDate !== undefined) {
+                localVarQueryParameter['end_date'] = (endDate as any instanceof Date) ?
+                    (endDate as any).toISOString().substring(0,10) :
+                    endDate;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get stock quote
+         * @param {string} symbol 
+         * @param {string} apiKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStockQuote: async (symbol: string, apiKey: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'symbol' is not null or undefined
+            assertParamExists('getStockQuote', 'symbol', symbol)
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('getStockQuote', 'apiKey', apiKey)
+            const localVarPath = `/market-data/quote`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (symbol !== undefined) {
+                localVarQueryParameter['symbol'] = symbol;
+            }
+
+            if (apiKey !== undefined) {
+                localVarQueryParameter['apiKey'] = apiKey;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Retrieve time series data for a financial instrument
+         * @param {string} symbol Symbol ticker of the instrument (e.g., AAPL, EUR/USD, ETH/BTC)
+         * @param {string} apiKey 
+         * @param {GetTimeSeriesDataIntervalEnum} interval Interval between two consecutive points in time series
+         * @param {string} [figi] Filter by financial instrument global identifier (FIGI)
+         * @param {string} [exchange] Exchange where instrument is traded
+         * @param {string} [micCode] Market Identifier Code (MIC) under ISO 10383 standard
+         * @param {string} [country] Country where instrument is traded
+         * @param {GetTimeSeriesDataTypeEnum} [type] The asset class to which the instrument belongs
+         * @param {number} [outputsize] Number of data points to retrieve (default 30 when no date parameters are set, otherwise set to maximum)
+         * @param {GetTimeSeriesDataFormatEnum} [format] Format of the response (default JSON)
+         * @param {string} [delimiter] Specify the delimiter used when downloading the CSV file (default semicolon ;)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTimeSeriesData: async (symbol: string, apiKey: string, interval: GetTimeSeriesDataIntervalEnum, figi?: string, exchange?: string, micCode?: string, country?: string, type?: GetTimeSeriesDataTypeEnum, outputsize?: number, format?: GetTimeSeriesDataFormatEnum, delimiter?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'symbol' is not null or undefined
+            assertParamExists('getTimeSeriesData', 'symbol', symbol)
+            // verify required parameter 'apiKey' is not null or undefined
+            assertParamExists('getTimeSeriesData', 'apiKey', apiKey)
+            // verify required parameter 'interval' is not null or undefined
+            assertParamExists('getTimeSeriesData', 'interval', interval)
+            const localVarPath = `/market-data/time-series`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (symbol !== undefined) {
+                localVarQueryParameter['symbol'] = symbol;
+            }
+
+            if (apiKey !== undefined) {
+                localVarQueryParameter['apiKey'] = apiKey;
+            }
+
+            if (figi !== undefined) {
+                localVarQueryParameter['figi'] = figi;
+            }
+
+            if (interval !== undefined) {
+                localVarQueryParameter['interval'] = interval;
+            }
+
+            if (exchange !== undefined) {
+                localVarQueryParameter['exchange'] = exchange;
+            }
+
+            if (micCode !== undefined) {
+                localVarQueryParameter['mic_code'] = micCode;
+            }
+
+            if (country !== undefined) {
+                localVarQueryParameter['country'] = country;
+            }
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (outputsize !== undefined) {
+                localVarQueryParameter['outputsize'] = outputsize;
+            }
+
+            if (format !== undefined) {
+                localVarQueryParameter['format'] = format;
+            }
+
+            if (delimiter !== undefined) {
+                localVarQueryParameter['delimiter'] = delimiter;
+            }
 
 
     
@@ -399,6 +1178,63 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Retrieve the income statement for a given financial instrument.
+         * @summary Get Income Statement
+         * @param {string} symbol 
+         * @param {string} [figi] 
+         * @param {string} [exchange] 
+         * @param {string} [micCode] 
+         * @param {string} [country] 
+         * @param {GetIncomeStatementPeriodEnum} [period] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getIncomeStatement(symbol: string, figi?: string, exchange?: string, micCode?: string, country?: string, period?: GetIncomeStatementPeriodEnum, startDate?: string, endDate?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetIncomeStatement200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getIncomeStatement(symbol, figi, exchange, micCode, country, period, startDate, endDate, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.getIncomeStatement']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Get stock quote
+         * @param {string} symbol 
+         * @param {string} apiKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getStockQuote(symbol: string, apiKey: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Quote>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getStockQuote(symbol, apiKey, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.getStockQuote']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Retrieve time series data for a financial instrument
+         * @param {string} symbol Symbol ticker of the instrument (e.g., AAPL, EUR/USD, ETH/BTC)
+         * @param {string} apiKey 
+         * @param {GetTimeSeriesDataIntervalEnum} interval Interval between two consecutive points in time series
+         * @param {string} [figi] Filter by financial instrument global identifier (FIGI)
+         * @param {string} [exchange] Exchange where instrument is traded
+         * @param {string} [micCode] Market Identifier Code (MIC) under ISO 10383 standard
+         * @param {string} [country] Country where instrument is traded
+         * @param {GetTimeSeriesDataTypeEnum} [type] The asset class to which the instrument belongs
+         * @param {number} [outputsize] Number of data points to retrieve (default 30 when no date parameters are set, otherwise set to maximum)
+         * @param {GetTimeSeriesDataFormatEnum} [format] Format of the response (default JSON)
+         * @param {string} [delimiter] Specify the delimiter used when downloading the CSV file (default semicolon ;)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getTimeSeriesData(symbol: string, apiKey: string, interval: GetTimeSeriesDataIntervalEnum, figi?: string, exchange?: string, micCode?: string, country?: string, type?: GetTimeSeriesDataTypeEnum, outputsize?: number, format?: GetTimeSeriesDataFormatEnum, delimiter?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTimeSeriesData200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getTimeSeriesData(symbol, apiKey, interval, figi, exchange, micCode, country, type, outputsize, format, delimiter, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.getTimeSeriesData']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Retrieve list of watched stocks
          * @summary Get a list of stocks
          * @param {*} [options] Override http request option.
@@ -464,6 +1300,54 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          */
         deleteNote(symbol: string, noteId: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.deleteNote(symbol, noteId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve the income statement for a given financial instrument.
+         * @summary Get Income Statement
+         * @param {string} symbol 
+         * @param {string} [figi] 
+         * @param {string} [exchange] 
+         * @param {string} [micCode] 
+         * @param {string} [country] 
+         * @param {GetIncomeStatementPeriodEnum} [period] 
+         * @param {string} [startDate] 
+         * @param {string} [endDate] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIncomeStatement(symbol: string, figi?: string, exchange?: string, micCode?: string, country?: string, period?: GetIncomeStatementPeriodEnum, startDate?: string, endDate?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetIncomeStatement200Response> {
+            return localVarFp.getIncomeStatement(symbol, figi, exchange, micCode, country, period, startDate, endDate, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Get stock quote
+         * @param {string} symbol 
+         * @param {string} apiKey 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStockQuote(symbol: string, apiKey: string, options?: RawAxiosRequestConfig): AxiosPromise<Quote> {
+            return localVarFp.getStockQuote(symbol, apiKey, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Retrieve time series data for a financial instrument
+         * @param {string} symbol Symbol ticker of the instrument (e.g., AAPL, EUR/USD, ETH/BTC)
+         * @param {string} apiKey 
+         * @param {GetTimeSeriesDataIntervalEnum} interval Interval between two consecutive points in time series
+         * @param {string} [figi] Filter by financial instrument global identifier (FIGI)
+         * @param {string} [exchange] Exchange where instrument is traded
+         * @param {string} [micCode] Market Identifier Code (MIC) under ISO 10383 standard
+         * @param {string} [country] Country where instrument is traded
+         * @param {GetTimeSeriesDataTypeEnum} [type] The asset class to which the instrument belongs
+         * @param {number} [outputsize] Number of data points to retrieve (default 30 when no date parameters are set, otherwise set to maximum)
+         * @param {GetTimeSeriesDataFormatEnum} [format] Format of the response (default JSON)
+         * @param {string} [delimiter] Specify the delimiter used when downloading the CSV file (default semicolon ;)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTimeSeriesData(symbol: string, apiKey: string, interval: GetTimeSeriesDataIntervalEnum, figi?: string, exchange?: string, micCode?: string, country?: string, type?: GetTimeSeriesDataTypeEnum, outputsize?: number, format?: GetTimeSeriesDataFormatEnum, delimiter?: string, options?: RawAxiosRequestConfig): AxiosPromise<GetTimeSeriesData200Response> {
+            return localVarFp.getTimeSeriesData(symbol, apiKey, interval, figi, exchange, micCode, country, type, outputsize, format, delimiter, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve list of watched stocks
@@ -533,6 +1417,60 @@ export class DefaultApi extends BaseAPI {
     }
 
     /**
+     * Retrieve the income statement for a given financial instrument.
+     * @summary Get Income Statement
+     * @param {string} symbol 
+     * @param {string} [figi] 
+     * @param {string} [exchange] 
+     * @param {string} [micCode] 
+     * @param {string} [country] 
+     * @param {GetIncomeStatementPeriodEnum} [period] 
+     * @param {string} [startDate] 
+     * @param {string} [endDate] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getIncomeStatement(symbol: string, figi?: string, exchange?: string, micCode?: string, country?: string, period?: GetIncomeStatementPeriodEnum, startDate?: string, endDate?: string, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getIncomeStatement(symbol, figi, exchange, micCode, country, period, startDate, endDate, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Get stock quote
+     * @param {string} symbol 
+     * @param {string} apiKey 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getStockQuote(symbol: string, apiKey: string, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getStockQuote(symbol, apiKey, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Retrieve time series data for a financial instrument
+     * @param {string} symbol Symbol ticker of the instrument (e.g., AAPL, EUR/USD, ETH/BTC)
+     * @param {string} apiKey 
+     * @param {GetTimeSeriesDataIntervalEnum} interval Interval between two consecutive points in time series
+     * @param {string} [figi] Filter by financial instrument global identifier (FIGI)
+     * @param {string} [exchange] Exchange where instrument is traded
+     * @param {string} [micCode] Market Identifier Code (MIC) under ISO 10383 standard
+     * @param {string} [country] Country where instrument is traded
+     * @param {GetTimeSeriesDataTypeEnum} [type] The asset class to which the instrument belongs
+     * @param {number} [outputsize] Number of data points to retrieve (default 30 when no date parameters are set, otherwise set to maximum)
+     * @param {GetTimeSeriesDataFormatEnum} [format] Format of the response (default JSON)
+     * @param {string} [delimiter] Specify the delimiter used when downloading the CSV file (default semicolon ;)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DefaultApi
+     */
+    public getTimeSeriesData(symbol: string, apiKey: string, interval: GetTimeSeriesDataIntervalEnum, figi?: string, exchange?: string, micCode?: string, country?: string, type?: GetTimeSeriesDataTypeEnum, outputsize?: number, format?: GetTimeSeriesDataFormatEnum, delimiter?: string, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).getTimeSeriesData(symbol, apiKey, interval, figi, exchange, micCode, country, type, outputsize, format, delimiter, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Retrieve list of watched stocks
      * @summary Get a list of stocks
      * @param {*} [options] Override http request option.
@@ -556,5 +1494,65 @@ export class DefaultApi extends BaseAPI {
     }
 }
 
+/**
+ * @export
+ */
+export const GetIncomeStatementPeriodEnum = {
+    Annual: 'annual',
+    Quarterly: 'quarterly'
+} as const;
+export type GetIncomeStatementPeriodEnum = typeof GetIncomeStatementPeriodEnum[keyof typeof GetIncomeStatementPeriodEnum];
+/**
+ * @export
+ */
+export const GetTimeSeriesDataIntervalEnum = {
+    _1min: '1min',
+    _5min: '5min',
+    _15min: '15min',
+    _30min: '30min',
+    _45min: '45min',
+    _1h: '1h',
+    _2h: '2h',
+    _4h: '4h',
+    _1day: '1day',
+    _1week: '1week',
+    _1month: '1month'
+} as const;
+export type GetTimeSeriesDataIntervalEnum = typeof GetTimeSeriesDataIntervalEnum[keyof typeof GetTimeSeriesDataIntervalEnum];
+/**
+ * @export
+ */
+export const GetTimeSeriesDataTypeEnum = {
+    AmericanDepositaryReceipt: 'American Depositary Receipt',
+    Bond: 'Bond',
+    BondFund: 'Bond Fund',
+    ClosedEndFund: 'Closed-end Fund',
+    CommonStock: 'Common Stock',
+    DepositaryReceipt: 'Depositary Receipt',
+    DigitalCurrency: 'Digital Currency',
+    Etf: 'ETF',
+    ExchangeTradedNote: 'Exchange-Traded Note',
+    GlobalDepositaryReceipt: 'Global Depositary Receipt',
+    Index: 'Index',
+    LimitedPartnership: 'Limited Partnership',
+    MutualFund: 'Mutual Fund',
+    PhysicalCurrency: 'Physical Currency',
+    PreferredStock: 'Preferred Stock',
+    Reit: 'REIT',
+    Right: 'Right',
+    StructuredProduct: 'Structured Product',
+    Trust: 'Trust',
+    Unit: 'Unit',
+    Warrant: 'Warrant'
+} as const;
+export type GetTimeSeriesDataTypeEnum = typeof GetTimeSeriesDataTypeEnum[keyof typeof GetTimeSeriesDataTypeEnum];
+/**
+ * @export
+ */
+export const GetTimeSeriesDataFormatEnum = {
+    Json: 'JSON',
+    Csv: 'CSV'
+} as const;
+export type GetTimeSeriesDataFormatEnum = typeof GetTimeSeriesDataFormatEnum[keyof typeof GetTimeSeriesDataFormatEnum];
 
 
