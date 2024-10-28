@@ -1,0 +1,111 @@
+get:
+  operationId: getStockPrice
+  summary: Get the price of a financial instrument
+  description: Retrieve the price of a financial instrument based on various parameters.
+  parameters:
+    - name: symbol
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Symbol ticker of the instrument (e.g., AAPL, EUR/USD, ETH/BTC, etc.)
+    - name: apikey
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Your API key, which you can obtain for free here
+    - name: figi
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter by financial instrument global identifier (FIGI)
+    - name: exchange
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Exchange where instrument is traded
+    - name: mic_code
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Market Identifier Code (MIC) under ISO 10383 standard
+    - name: country
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Country where instrument is traded
+    - name: type
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          [
+            American Depositary Receipt,
+            Bond,
+            Bond Fund,
+            Closed-end Fund,
+            Common Stock,
+            Depositary Receipt,
+            Digital Currency,
+            ETF,
+            Exchange-Traded Note,
+            Global Depositary Receipt,
+            Index,
+            Limited Partnership,
+            Mutual Fund,
+            Physical Currency,
+            Preferred Stock,
+            REIT,
+            Right,
+            Structured Product,
+            Trust,
+            Unit,
+            Warrant,
+          ]
+      description: The asset class to which the instrument belongs
+    - name: format
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [JSON, CSV]
+        default: JSON
+      description: Value can be JSON or CSV
+    - name: delimiter
+      in: query
+      required: false
+      schema:
+        type: string
+        default: ';'
+      description: Specify the delimiter used when downloading the CSV file
+    - name: prepost
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
+      description: Available at the 1min, 5min, 15min, and 30min intervals for all US equities. Open, high, low, close values are supplied without volume.
+    - name: dp
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+        maximum: 11
+        default: 5
+      description: Specifies the number of decimal places for floating values
+  responses:
+    '200':
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: ../models/Price.yml
+    '400':
+      $ref: ../responses/ProblemResponse.yml

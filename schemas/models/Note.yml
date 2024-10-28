@@ -7,15 +7,19 @@ properties:
     type: string
   price:
     type: number
+    pattern: /^[0-9]{2,6}\.[0-9]{5}$/
   notes:
     type: string
   priceTarget:
     type: number
+    pattern: /^[0-9]{2,6}\.[0-9]{2}$/
   followUpDate:
     type: string
     format: date-time
   confidence:
     type: integer
+    maximum: 10
+    minimum: 0
 required:
   - date
   - price

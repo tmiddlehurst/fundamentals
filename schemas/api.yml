@@ -5,7 +5,7 @@ info:
   description: Add, remove, add notes to watched stocks
   version: 1.0.0
 servers:
-  - url: http://localhost:8443
+  - url: http://localhost:5173
     description: user data
 paths:
   /stocks:
@@ -16,6 +16,8 @@ paths:
     $ref: paths/delete-note.yml
   /market-data/quote:
     $ref: paths/get-quote.yml
+  /market-data/price:
+    $ref: paths/get-price.yml
   /market-data/time-series:
     $ref: paths/get-time-series.yml
   /market-data/income-statement:

@@ -19,6 +19,5 @@ get:
         application/json:
           schema:
             $ref: ../models/Quote.yml
-
     '400':
       $ref: ../responses/ProblemResponse.yml
