@@ -21,7 +21,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
 	implementation 'org.springframework:spring-websocket:6.0.11'
-
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket:3.3.5'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
