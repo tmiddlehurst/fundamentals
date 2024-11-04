@@ -28,11 +28,10 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
 
 
     private MarketDataUpdate generateMarketUpdate(String symbol) {
-        double newPrice = prices.get(symbol) + ThreadLocalRandom.current().nextDouble(-0.1, 0.1);
+        double newPrice = randomPriceCloseTo(prices.get(symbol));
         prices.put(symbol, newPrice);
         MarketDataUpdate mdu = MarketDataUpdateGenerator.generateRandomMarketDataUpdate(symbol, newPrice);
         return mdu;
-
     }
 
     @Override
@@ -41,8 +40,8 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
         TimerTask sendUpdate = new TimerTask() {
             @Override
             public void run() {
-                try {
-                    if (session.isOpen() && !subscriptions.isEmpty()) {
+                if (subscriptions.size() > 0) {
+                    try {
                         String randomSubscribedSymbol = subscriptions.keySet()
                                                                       .stream()
                                                                       .skip(ThreadLocalRandom.current().nextInt(subscriptions.size()))
@@ -51,11 +50,10 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
                         MarketDataUpdate newMessage = generateMarketUpdate(randomSubscribedSymbol);
                         ObjectMapper objectMapper = new ObjectMapper();
                         String jsonMessage = objectMapper.writeValueAsString(newMessage);
-                        // System.out.println(jsonMessage);
                         session.sendMessage(new TextMessage(jsonMessage));
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
         };
@@ -85,12 +83,22 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
         if (payload.startsWith("subscribe:")) {
             String symbol = payload.substring("subscribe:".length()).trim();
             if (!subscriptions.containsKey(symbol)) {
+                System.out.println("subscribing to "+symbol);
                 subscriptions.put(symbol, session);
                 double currentPrice = fetchCurrentPrice(symbol);
                 prices.put(symbol, currentPrice);
-                session.sendMessage(new TextMessage("Subscribed to " + symbol));
+                session.sendMessage(new TextMessage("subscription-added:" + symbol));
             } else {
                 session.sendMessage(new TextMessage("Already subscribed to " + symbol));
+            }
+        }
+        if (payload.startsWith("unsubscribe:")) {
+            String symbol = payload.substring("subscribe:".length()).trim();
+            if (subscriptions.containsKey(symbol)) {
+                subscriptions.remove(symbol);
+                session.sendMessage(new TextMessage("subscription-removed:" + symbol));
+            } else {
+                session.sendMessage(new TextMessage("Not subscribed to  " + symbol));
             }
         }
     }
@@ -102,32 +110,41 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
         prices.clear();
     }
 
-    
-    private double fetchCurrentPrice(String symbol) throws Exception {
-        // String apiKey = "your_api_key";
-        String apiKey = System.getenv("TWELVE_API_KEY");
-        String urlString = String.format("https://api.twelvedata.com/price?symbol=%s&apikey=%s", symbol, apiKey);
-        System.out.println(urlString);
-        URL url = new URI(urlString).toURL();
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("GET");
 
-        int responseCode = connection.getResponseCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            ObjectMapper objectMapper = new ObjectMapper();
-            Map<String, String> responseMap = objectMapper.readValue(response.toString(), Map.class);
-            return Double.parseDouble(responseMap.get("price"));
-        } else {
-            throw new RuntimeException("Failed to fetch price: HTTP error code : " + responseCode);
-        }
+    // When we can't get a price
+    private double fetchCurrentPrice(String symbol) {
+        return randomPriceCloseTo(180.50);
     }
+
+    private double randomPriceCloseTo(Double level) {
+        return level + ThreadLocalRandom.current().nextDouble(-0.1, 0.1);
+    }
+    
+    // private double fetchCurrentPrice(String symbol) throws Exception {
+    //     // String apiKey = "your_api_key";
+    //     String apiKey = System.getenv("TWELVE_API_KEY");
+    //     String urlString = String.format("https://api.twelvedata.com/price?symbol=%s&apikey=%s", symbol, apiKey);
+    //     System.out.println(urlString);
+    //     URL url = new URI(urlString).toURL();
+    //     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    //     connection.setRequestMethod("GET");
+
+    //     int responseCode = connection.getResponseCode();
+    //     if (responseCode == HttpURLConnection.HTTP_OK) {
+    //         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+    //         String inputLine;
+    //         StringBuilder response = new StringBuilder();
+
+    //         while ((inputLine = in.readLine()) != null) {
+    //             response.append(inputLine);
+    //         }
+    //         in.close();
+
+    //         ObjectMapper objectMapper = new ObjectMapper();
+    //         Map<String, String> responseMap = objectMapper.readValue(response.toString(), Map.class);
+    //         return Double.parseDouble(responseMap.get("price"));
+    //     } else {
+    //         throw new RuntimeException("Failed to fetch price: HTTP error code : " + responseCode);
+    //     }
+    // }
 }
