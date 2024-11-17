@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.util.Random;
 
+import com.example.demo.model.MarketDataUpdate;
+
 public class MarketDataUpdateGenerator {
 
     private static final String CURRENCY = "USD";
@@ -21,7 +23,7 @@ public class MarketDataUpdateGenerator {
         update.setType(TYPE);
         update.setExchange(MIC_CODE[RANDOM.nextInt(MIC_CODE.length)]);
         update.setMicCode(MIC_CODE[RANDOM.nextInt(MIC_CODE.length)]);
-        update.setTimestamp(System.currentTimeMillis());
+        update.setTs(System.currentTimeMillis());
         update.setPrice(price); // Random price between 0 and 1000
 
         return update;

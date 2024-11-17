@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.Random;
 import java.util.Timer;
 
 import org.springframework.web.socket.CloseStatus;
@@ -10,21 +8,19 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.example.demo.model.MarketDataUpdate;
+import com.example.demo.model.SocketMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ThreadLocalRandom;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
 
 public class MyWebSocketHandler extends TextWebSocketHandler {
 
     private final Map<String, WebSocketSession> subscriptions = new ConcurrentHashMap<>();
     private final Map<String, Double> prices = new ConcurrentHashMap<>();
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
 
     private MarketDataUpdate generateMarketUpdate(String symbol) {
@@ -48,7 +44,6 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
                                                                       .findFirst()
                                                                       .orElse(null);
                         MarketDataUpdate newMessage = generateMarketUpdate(randomSubscribedSymbol);
-                        ObjectMapper objectMapper = new ObjectMapper();
                         String jsonMessage = objectMapper.writeValueAsString(newMessage);
                         session.sendMessage(new TextMessage(jsonMessage));
                     } catch (Exception e) {
@@ -63,7 +58,11 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
             public void run() {
                 try {
                     if (session.isOpen()) {
-                        session.sendMessage(new TextMessage("Heartbeat"));
+                        SocketMessage heartbeatMessage = new SocketMessage();
+                        heartbeatMessage.setTs(System.currentTimeMillis());
+                        heartbeatMessage.setType("Heartbeat");
+                        String jsonMessage = objectMapper.writeValueAsString(heartbeatMessage);
+                        session.sendMessage(new TextMessage(jsonMessage));
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
