@@ -11,19 +11,6 @@ properties:
     items:
       $ref: './Note.yml'
       price:
-  latestTarget:
-    type: string
-    pattern: /^[0-9]{2,6}\.[0-9]+$/
-  latestConfidence:
-    type: integer
-    maximum: 10
-    minimum: 0
-  latestNoteDate:
-    type: string
-    format: date-time
-  followUpDate:
-    type: string
-    format: date-time
 required:
   - name
   - symbol
