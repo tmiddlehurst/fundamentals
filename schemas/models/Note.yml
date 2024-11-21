@@ -1,8 +1,14 @@
 type: object
 properties:
+  name:
+    type: string
+    example: Apple
   symbol:
     type: string
     example: AAPL
+  title:
+    type: string
+    example: Analysis of Apple on 12/12/24
   date:
     type: string
     format: date-time
@@ -22,6 +28,8 @@ properties:
     maximum: 10
     minimum: 0
 required:
+  - name
+  - title
   - symbol
   - date
   - price
