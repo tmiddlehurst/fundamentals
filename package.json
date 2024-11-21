@@ -7,12 +7,14 @@
     "dev": "vite",
     "build": "npm run openapi-generate && tsc -b && vite build",
     "generate-mocks": "../msw-auto-mock/bin/cli.js './schemas/api.yml' -o ./src/mock/generated",
+    "generate-server": "npx @openapitools/openapi-generator-cli generate -g spring -i ./schemas/api.yml -o server/generated",
     "generate-types": "npx @openapitools/openapi-generator-cli generate -g typescript -i ./schemas/api.yml -o src/types/generated",
     "lint": "eslint .",
     "openapi-generate": "npm run generate-types && npm run generate-mocks",
     "preview": "vite preview"
   },
   "dependencies": {
+    "miragejs": "^0.1.48",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-use-websocket": "^4.11.0"

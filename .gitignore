@@ -31,3 +31,6 @@ openapitools.json
 *.njsproj
 *.sln
 *.sw?
+
+server/generated
+src/mirage/generated
