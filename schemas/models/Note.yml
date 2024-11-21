@@ -9,13 +9,11 @@ properties:
   id:
     type: string
   price:
-    type: string
-    pattern: ^[0-9]{2,6}\.[0-9]{5}$
+    type: number
   note:
     type: string
   priceTarget:
-    type: string
-    pattern: ^[0-9]{2,6}\.[0-9]+$
+    type: number
   followUpDate:
     type: string
     format: date-time
@@ -24,6 +22,7 @@ properties:
     maximum: 10
     minimum: 0
 required:
+  - symbol
   - date
   - price
   - notes
