@@ -1,18 +1,15 @@
-import { createServer } from 'miragejs';
-import { models, factories, handlersMap } from './generated/index';
+import { createServer, Factory, Model } from 'miragejs';
+import { handlersMap } from './generated/index';
 import type { HandlerRequest, MirageRouteHandler } from './generated/index';
-import { JSONAPISerializer } from 'miragejs';
+import { noteFactory } from './factories';
 
 const serverConfig = {
-  environment: 'test',
-  models,
-  factories,
+  models: { note: Model },
+  factories: { note: noteFactory },
 
-  serializers: {
-    application: JSONAPISerializer
+  seeds(server) {
+    server.createList("note", 60);
   },
-
-  seeds() { },
 
   routes() {
     handlersMap.forEach(
@@ -21,6 +18,8 @@ const serverConfig = {
         this[info.verb](info.path, handler);
       }
     );
+
+    this.get('/notes');
   }
 };
 

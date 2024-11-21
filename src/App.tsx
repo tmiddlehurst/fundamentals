@@ -4,6 +4,9 @@ import StockList from './components/StockList';
 import axios, { AxiosResponse } from 'axios';
 
 function getStocksListFromNotes(notes: Note[]) {
+  if (notes.length == 0) {
+    return [];
+  }
   const stocks: WatchedStock[] = [];
   const map = new Map<string, number>();
   notes = notes.sort((a, b) => Number(b.date) - Number(a.date));
@@ -36,7 +39,11 @@ function App() {
 
   useEffect(() => {
     axios.get('/notes').then((res: AxiosResponse<Note[]>) => {
-      setNotes(res.data);
+      if (res.data.notes) {
+        setNotes(res.data.notes);
+      } else {
+        setNotes([]);
+      }
     });
   }, []);
 
