@@ -1,5 +1,8 @@
 type: object
 properties:
+  symbol:
+    type: string
+    example: AAPL
   date:
     type: string
     format: date-time
