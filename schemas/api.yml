@@ -8,12 +8,8 @@ servers:
   - url: http://localhost:5173
     description: user data
 paths:
-  /stocks:
-    $ref: paths/stocks.yml
-  /stocks/{symbol}:
-    $ref: paths/add-note.yml
-  /stocks/{symbol}/{noteId}:
-    $ref: paths/delete-note.yml
+  /notes:
+    $ref: paths/notes.yml
   /market-data/quote:
     $ref: paths/get-quote.yml
   /market-data/price:

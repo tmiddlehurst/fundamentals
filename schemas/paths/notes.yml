@@ -1,6 +1,6 @@
 get:
-  summary: Get a list of stocks
-  operationId: GetWatchedStocks
+  summary: Get a list of notes
+  operationId: GetNotes
   description: Retrieve list of watched stocks
   responses:
     '200':
@@ -10,34 +10,26 @@ get:
           schema:
             type: array
             items:
-              $ref: '../models/Stock.yml'
+              $ref: '../models/Note.yml'
     '400':
       $ref: ../responses/ProblemResponse.yml
 post:
-  summary: Add a new stock
-  operationId: AddStock
+  operationId: AddNote
+  summary: Add analysis note
   requestBody:
-    description: Stock object that needs to be added
     required: true
     content:
       application/json:
         schema:
-          type: object
-          properties:
-            name:
-              type: string
-              example: Apple
-            symbol:
-              type: string
-              example: AAPL
+          $ref: ../models/Note.yml
   responses:
     '200':
-      description: Stock added successfully
+      description: Note added successfully
     '400':
       $ref: ../responses/ProblemResponse.yml
 delete:
-  summary: Remove a watched stock from watchlist
-  operationId: RemoveStock
+  summary: Remove a note from a watched stock
+  operationId: DeleteNote
   parameters:
     - in: query
       name: symbol
@@ -46,8 +38,14 @@ delete:
         type: string
       description: Stock ticker symbol
       example: AAPL
+    - in: query
+      name: noteId
+      required: true
+      schema:
+        type: string
+      description: Note ID
   responses:
     '200':
-      description: Stock deleted successfully
+      description: Note deleted successfully
     '400':
       $ref: ../responses/ProblemResponse.yml
