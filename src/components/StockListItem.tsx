@@ -2,10 +2,6 @@ import { useEffect, useState } from 'react';
 import { WatchedStock } from '../types/types';
 import axios from 'axios';
 
-// function isInPast(date: Date | undefined): boolean {
-//   return typeof date === 'string';
-// }
-
 export default function StockListItem({ stock }: { stock: WatchedStock }) {
   const [price, setPrice] = useState<string>();
 

@@ -10,13 +10,13 @@ function getStocksListFromNotes(notes: Note[]) {
   const stocks: WatchedStock[] = [];
   const map = new Map<string, number>();
   notes = notes.sort((a, b) => Number(b.date) - Number(a.date));
-
   notes.forEach((note) => {
     const i = map.get(note.symbol);
-    if (i) {
+    if (i !== undefined) {
       stocks[i].notes.push(note);
     } else {
       const l = stocks.length;
+      map.set(note.symbol, l);
       const watchedStock: WatchedStock = {
         name: note.name,
         symbol: note.symbol,
@@ -27,7 +27,6 @@ function getStocksListFromNotes(notes: Note[]) {
         confidence: note.confidence,
       };
       stocks.push(watchedStock);
-      map.set(note.symbol, l);
     }
   });
 
@@ -38,7 +37,7 @@ function App() {
   const [notes, setNotes] = useState<Note[]>([]);
 
   useEffect(() => {
-    axios.get('/notes').then((res: AxiosResponse<Note[]>) => {
+    axios.get('/notes').then((res: AxiosResponse<{ notes: Note[] }>) => {
       if (res.data.notes) {
         setNotes(res.data.notes);
       } else {
@@ -50,8 +49,6 @@ function App() {
   const watchedStocks = useMemo(() => {
     return getStocksListFromNotes(notes);
   }, [notes]);
-
-  console.log(notes);
 
   return (
     <main className='flex flex-row space-x-4 bg-blue-50 p-4'>
