@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { WatchedStock } from '../types/types';
 import axios from 'axios';
 
-export default function StockListItem({ stock }: { stock: WatchedStock }) {
+export default function StockListItem({
+  stock,
+  setSelectedStock,
+}: {
+  stock: WatchedStock;
+  setSelectedStock: (symbol: string) => void;
+}) {
   const [price, setPrice] = useState<string>();
 
   useEffect(() => {
@@ -14,7 +20,11 @@ export default function StockListItem({ stock }: { stock: WatchedStock }) {
   }, []);
 
   return (
-    <tr className=''>
+    <tr
+      role='button'
+      className=''
+      onClick={() => setSelectedStock(stock.symbol)}
+    >
       <td>{stock.symbol}</td>
       <td>{stock.name}</td>
       <td>{price}</td>

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Note, WatchedStock } from './types/types';
 import StockList from './components/StockList';
 import axios, { AxiosResponse } from 'axios';
+import WatchedStockDetail from './components/WatchedStockDetail';
 
 function getStocksListFromNotes(notes: Note[]) {
   if (notes.length == 0) {
@@ -35,6 +36,7 @@ function getStocksListFromNotes(notes: Note[]) {
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
+  const [selectedStock, setSelectedStock] = useState<string>();
 
   useEffect(() => {
     axios.get('/notes').then((res: AxiosResponse<{ notes: Note[] }>) => {
@@ -50,10 +52,21 @@ function App() {
     return getStocksListFromNotes(notes);
   }, [notes]);
 
+  const watchedStock = watchedStocks.find(
+    (stock: WatchedStock) => stock.symbol === selectedStock
+  );
+
   return (
     <main className='flex flex-row space-x-4 bg-blue-50 p-4'>
-      <StockList stocks={watchedStocks} />
-      <div className='flex-1 rounded-md bg-white'>'add stock...'</div>
+      <StockList
+        stocks={watchedStocks}
+        setSelectedStock={(stock: string) => setSelectedStock(stock)}
+      />
+      {watchedStock ? (
+        <WatchedStockDetail stock={watchedStock} />
+      ) : (
+        <div className='flex-1 rounded-md bg-white'>Select A stock...</div>
+      )}
     </main>
   );
 }

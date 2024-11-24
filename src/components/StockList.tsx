@@ -1,7 +1,13 @@
 import { WatchedStock } from '../types/types';
 import StockListItem from './StockListItem';
 
-export default function StockList({ stocks }: { stocks: WatchedStock[] }) {
+export default function StockList({
+  stocks,
+  setSelectedStock,
+}: {
+  stocks: WatchedStock[];
+  setSelectedStock: (symbol: string) => void;
+}) {
   return (
     <div className='rounded-md bg-white flex-1'>
       <div>filter controls</div>
@@ -18,7 +24,11 @@ export default function StockList({ stocks }: { stocks: WatchedStock[] }) {
         </thead>
         <tbody>
           {stocks.map((s: WatchedStock, i) => (
-            <StockListItem key={i} stock={s} />
+            <StockListItem
+              key={i}
+              stock={s}
+              setSelectedStock={setSelectedStock}
+            />
           ))}
         </tbody>
       </table>
