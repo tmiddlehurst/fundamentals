@@ -1,10 +1,13 @@
 import { Factory } from "miragejs";
 
 const examples = [
-  ['MSFT', 'Microsoft'],
   ['AAPL', 'Apple'],
+  ['MSFT', 'Microsoft'],
   ['TSLA', 'Tesla'],
   ['NVDA', 'Nvidia'],
+  ['COST', 'CostCo'],
+  ['BABA', 'Alibaba'],
+  ['NFLX', 'Netflix'],
 ];
 
 const noteFactory = Factory.extend({
@@ -12,10 +15,10 @@ const noteFactory = Factory.extend({
     return `${i}`;
   },
   name(i) {
-    return examples[i % (examples.length - 1)][1];
+    return examples[i % (examples.length)][1];
   },
   symbol(i) {
-    return examples[i % (examples.length - 1)][0];
+    return examples[i % (examples.length)][0];
   },
   title(i) {
     const r = Math.random() * 365 * (1000 * 3600 * 24);
