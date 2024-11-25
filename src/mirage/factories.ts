@@ -1,4 +1,5 @@
 import { Factory } from "miragejs";
+import { faker } from "@faker-js/faker";
 
 const examples = [
   ['AAPL', 'Apple'],
@@ -42,4 +43,30 @@ const noteFactory = Factory.extend({
   },
 });
 
-export { noteFactory };
+const start = new Date('2021-09-16T15:55:00Z').valueOf();
+const range = Date.now().valueOf() - start;
+const increment = range / 350;
+const increments = new Array(350).fill('').map((p, i) => start + increment * i);
+
+const timeSeriesPointFactory = Factory.extend({
+  datetime(i) {
+    return new Date(increments[i]).toISOString();
+  },
+  open() {
+    return faker.helpers.fromRegExp('[0-9]{2,6}\.[0-9]{2,5}');
+  },
+  high() {
+    return faker.helpers.fromRegExp('[0-9]{2,6}\.[0-9]{2,5}');
+  },
+  close() {
+    return faker.helpers.fromRegExp('[0-9]{2,6}\.[0-9]{2,5}');
+  },
+  low() {
+    return faker.helpers.fromRegExp('[0-9]{2,6}\.[0-9]{2,5}');
+  },
+  volume() {
+    return faker.helpers.fromRegExp('[0-9]{2,6}\.[0-9]{2}');
+  },
+});
+
+export { noteFactory, timeSeriesPointFactory };
