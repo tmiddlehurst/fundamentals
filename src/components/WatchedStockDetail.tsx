@@ -3,6 +3,7 @@ import { ChartInterval, WatchedStock } from '../types/types';
 import { AxiosContext } from '../context/AxiosAPIContext';
 import Chart from 'react-apexcharts';
 import { TimeSeriesPoint } from '../types/generated';
+import Notes from './Notes';
 
 type ApexChartCandlestickChartPoint = [
   number,
@@ -27,7 +28,7 @@ export default function WatchedStockDetail({ stock }: { stock: WatchedStock }) {
   useEffect(() => {
     api
       .getTimeSeriesData(stock.symbol, 'TOMS_API_KEY', chartInterval)
-      .then((data) => {
+      .then(({ data }) => {
         const series = data.values?.map((val) => toApexCandlestickPoint(val));
         setChartSeries(series);
       });
@@ -47,16 +48,17 @@ export default function WatchedStockDetail({ stock }: { stock: WatchedStock }) {
   return (
     <div className='flex-1 rounded-md bg-white flex flex-col justify-between'>
       {stock.name}
-      <div>
+      <div className='flex-1'>
         {chartSeries?.length && (
           <Chart
+            height={360}
             series={chartConfig.series}
             options={chartConfig.options}
             type='candlestick'
           />
         )}
       </div>
-      <div>notes go here</div>
+      <Notes symbol={stock.symbol} notes={stock.notes} />
     </div>
   );
 }

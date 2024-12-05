@@ -57,7 +57,7 @@ function App() {
   );
 
   return (
-    <main className='flex flex-row space-x-4 bg-blue-50 p-4'>
+    <main className='grid grid-cols-2 space-x-4 bg-blue-50 p-4'>
       <StockList
         stocks={watchedStocks}
         setSelectedStock={(stock: string) => setSelectedStock(stock)}
